@@ -4,29 +4,11 @@ metadata:
   name: mysql-deployment
   namespace: suwetha-ns
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
-    spec:
       containers:
-      - name: mysql
-        image: mysql          
+      - name: mysql-cont
+        image: mysql:8.0
         ports:
         - containerPort: 3306
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "Root@123"
-        - name: MYSQL_USER
-          value: "college_user"
-        - name: MYSQL_PASSWORD
-          value: "deereddy@123"
-        - name: MYSQL_DATABASE
-          value: "mariadb"       
         resources:
           requests:
             memory: "256Mi"
@@ -34,18 +16,25 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "Root@123"
+          - name: DB_USER
+            value: "college_user"
+          - name: DB_PASSWORD
+            value: "deereddy@123"
         volumeMounts:
-          - name: suwetha-mysql
+          - name: mysql-storage
             mountPath: /var/lib/mysql
-          - name: initdb-volume
+          - name: mysql-q
             mountPath: /docker-entrypoint-initdb.d
       volumes:
-        - name: suwetha-mysql
-          persistentVolumeClaim:
-            claimName: mariadb-pvc
-        - name: initdb-volume
-          configMap:
-            name: mysql-init
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
+      - name: mysql-q
+        configMap:
+          name: mysql-init
 ---
 apiVersion: v1
 kind: Service
