@@ -7,7 +7,7 @@ data:
   MARIADB_ROOT_PASSWORD: "Root@123"
   DB_USER: "college_user"
   DB_PASSWORD: "deereddy@123"
-  DB_HOST: "mariadb"
+  DB_HOST: "mysql-service"
   DB_PORT: "3306"
   GRIEVANCE_DB: "grievance_db"
   LEAVE_DB: "leave_db"
