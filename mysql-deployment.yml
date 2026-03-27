@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mariadb:11            
+        image: mysql          
         ports:
         - containerPort: 3306
         env:
