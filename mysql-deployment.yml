@@ -34,7 +34,7 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
-          volumeMounts:
+        volumeMounts:
           - name: suwetha-mysql
             mountPath: /var/lib/mysql
       volumes:
