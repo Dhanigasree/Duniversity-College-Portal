@@ -37,9 +37,6 @@ spec:
         volumeMounts:
           - name: suwetha-mysql
             mountPath: /var/lib/mysql
-        securityContext:
-          runAsUser: 999      # MySQL user
-          fsGroup: 999
       volumes:
         - name: suwetha-mysql
           persistentVolumeClaim:
