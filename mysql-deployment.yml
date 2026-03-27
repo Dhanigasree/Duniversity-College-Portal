@@ -34,6 +34,13 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
+          volumeMounts:
+          - name: suwetha-mysql
+            mountPath: /data/db
+      volumes:
+        - name: suwetha-mysql
+          persistentVolumeClaim:
+            claimName: mariadb-pvc
 ---
 apiVersion: v1
 kind: Service
