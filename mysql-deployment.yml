@@ -26,7 +26,7 @@ spec:
         - name: MYSQL_PASSWORD
           value: "deereddy@123"
         - name: MYSQL_DATABASE
-          value: "mariyadb"       
+          value: "mariadb"       
         resources:
           requests:
             memory: "256Mi"
