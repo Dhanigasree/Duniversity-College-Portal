@@ -45,7 +45,7 @@ spec:
             claimName: mariadb-pvc
         - name: initdb-volume
           configMap:
-            name: sql-init-config
+            name: mysql-init
 ---
 apiVersion: v1
 kind: Service
