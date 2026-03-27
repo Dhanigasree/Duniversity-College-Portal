@@ -37,10 +37,15 @@ spec:
         volumeMounts:
           - name: suwetha-mysql
             mountPath: /var/lib/mysql
+          - name: initdb-volume
+            mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: suwetha-mysql
           persistentVolumeClaim:
             claimName: mariadb-pvc
+        - name: initdb-volume
+          configMap:
+            name: sql-init-config
 ---
 apiVersion: v1
 kind: Service
