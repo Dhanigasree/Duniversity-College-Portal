@@ -45,7 +45,7 @@ spec:
       volumes:
       - name: mysql-storage
         persistentVolumeClaim:
-          claimName: mariadb-pvc
+          claimName: mariadb-pvc1
       - name: mysql-q
         configMap:
           name: mysql-init
