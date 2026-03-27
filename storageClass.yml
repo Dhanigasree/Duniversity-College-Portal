@@ -4,5 +4,5 @@ metadata:
   name: duni-sc
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 10.0.1.213
+  server: 10.0.1.176
   share: /var/nfs/general/university
