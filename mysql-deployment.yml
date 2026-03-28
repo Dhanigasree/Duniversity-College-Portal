@@ -5,7 +5,7 @@ metadata:
   namespace: suwetha-ns
 spec:
   serviceName: mysql-service
-  replicas: 3
+  replicas: 1
   minReadySeconds: 10
   updateStrategy:
     type: RollingUpdate

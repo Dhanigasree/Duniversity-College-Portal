@@ -1,10 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSets
+kind: deployment
 metadata:
   name: university-app
   namespace: suwetha-ns
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
