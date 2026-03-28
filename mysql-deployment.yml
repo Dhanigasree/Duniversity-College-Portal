@@ -5,7 +5,8 @@ metadata:
   namespace: suwetha-ns
 spec:
   serviceName: mysql-service
-  replicas: 1
+  replicas: 3
+  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,6 +20,7 @@ spec:
       labels:
         app: mysql
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-cont
         image: mysql:8.0

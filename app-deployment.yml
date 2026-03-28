@@ -18,7 +18,6 @@ spec:
       labels:
         app: university-app
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
         - name: university-app
           image: ashutosh4782/duniversity-college-portal-backend:latest
