@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSets
 metadata:
   name: mysql-deployment
   namespace: suwetha-ns
