@@ -43,12 +43,21 @@ spec:
           - name: mysql-q
             mountPath: /docker-entrypoint-initdb.d
       volumes:
-      - name: mysql-storage
-        persistentVolumeClaim:
-          claimName: mariadb-pvc1
-      - name: mysql-q
-        configMap:
-          name: mysql-init
+      # - name: mysql-storage
+      #   persistentVolumeClaim:
+      #     claimName: mariadb-pvc1
+        - name: mysql-q
+          configMap:
+            name: mysql-init
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-storage
+    spec:
+      accessModes: ["ReadWriteMany"]
+      storageClassName: duni-sc
+      resources:
+        requests:
+          storage: 2Gi
 ---
 apiVersion: v1
 kind: Service
@@ -61,4 +70,4 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
-  type: ClusterIP
+  type: ClusterIP 
