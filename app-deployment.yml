@@ -4,9 +4,7 @@ metadata:
   name: university-app
   namespace: suwetha-ns
 spec:
-  serviceName: university-service
   replicas: 2
-  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
