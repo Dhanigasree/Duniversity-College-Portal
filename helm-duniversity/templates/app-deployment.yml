@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: university-app
+  namespace: suwetha-ns
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: university-app
+  template:
+    metadata:
+      labels:
+        app: university-app
+    spec:
+      containers:
+        - name: university-app
+          image: ashutosh4782/duniversity-college-portal-backend:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits: 
+              memory: "512Mi"
+              cpu: "200m"
+          # envFrom:
+          #   - configMapRef:
+          #       name: university-config
+          env:
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: university-config
+                key: DB_HOST
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: university-config
+                key: DB_PORT
+          - name: DB_USER
+            value: "college_user"
+          - name: DB_PASSWORD
+            value: "deereddy@123"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: university-service
+  namespace: suwetha-ns
+spec:
+  selector:
+    app: university-app
+  ports:
+    - port: 3001
+      targetPort: 3000
+  type: NodePort
